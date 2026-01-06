@@ -26,6 +26,12 @@ public class Score {
     private int points;
     private LocalDateTime awardedAt;
 
+    @PrePersist
+    public void prePersist(){
+        if(this.awardedAt == null){
+            this.awardedAt = LocalDateTime.now();
+        }
+    }
     // Constructor helper
     public Score (Long userId, String habitId, int points) {
         this.userId = userId;
